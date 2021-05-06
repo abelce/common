@@ -1,7 +1,7 @@
 package queryType
 
 import (
-	gen_md "abelce/common/code-gen/models"
+	// gen_md "abelce/common/code-gen/models"
 
 	"github.com/graphql-go/graphql"
 )
@@ -23,8 +23,10 @@ func GetCategoryType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Category)
-					return entity.Id, nil
+					if val, exist := p.Source.(map[string]interface{})["id"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -36,8 +38,10 @@ func GetCategoryType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Category)
-					return entity.Title, nil
+					if val, exist := p.Source.(map[string]interface{})["title"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -49,8 +53,10 @@ func GetCategoryType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Category)
-					return entity.IsDeleted, nil
+					if val, exist := p.Source.(map[string]interface{})["isDeleted"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -62,8 +68,10 @@ func GetCategoryType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Category)
-					return entity.UpdatedTime, nil
+					if val, exist := p.Source.(map[string]interface{})["updatedTime"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -75,8 +83,10 @@ func GetCategoryType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Category)
-					return entity.CreatedTime, nil
+					if val, exist := p.Source.(map[string]interface{})["createdTime"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -88,8 +98,10 @@ func GetCategoryType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Category)
-					return entity.OperateID, nil
+					if val, exist := p.Source.(map[string]interface{})["operateID"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			

@@ -1,7 +1,7 @@
 package queryType
 
 import (
-	gen_md "abelce/common/code-gen/models"
+	// gen_md "abelce/common/code-gen/models"
 
 	"github.com/graphql-go/graphql"
 )
@@ -23,8 +23,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.Id, nil
+					if val, exist := p.Source.(map[string]interface{})["id"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -36,8 +38,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.Name, nil
+					if val, exist := p.Source.(map[string]interface{})["name"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -49,8 +53,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.CategoryId, nil
+					if val, exist := p.Source.(map[string]interface{})["categoryId"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -69,8 +75,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.IsDeleted, nil
+					if val, exist := p.Source.(map[string]interface{})["isDeleted"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -82,8 +90,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.UpdatedTime, nil
+					if val, exist := p.Source.(map[string]interface{})["updatedTime"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -95,8 +105,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.CreatedTime, nil
+					if val, exist := p.Source.(map[string]interface{})["createdTime"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -108,8 +120,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.OperateID, nil
+					if val, exist := p.Source.(map[string]interface{})["operateID"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -121,8 +135,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.Overview, nil
+					if val, exist := p.Source.(map[string]interface{})["overview"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
@@ -134,8 +150,10 @@ func GetProductType(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.Logo, nil
+					if val, exist := p.Source.(map[string]interface{})["logo"]; exist {
+						return val, nil
+					}
+					return nil, nil
 				},
 			},
 			
