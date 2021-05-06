@@ -9,11 +9,11 @@ import (
 // 用户
 type User struct {
 	  //用户ID
-  Id string `json:"id" valid:"required"`
+  Id string `json:"id"`
   //姓名
-  Name string `json:"name" valid:"required"`
+  Name string `json:"name"`
   //性别
-  Sex string `json:"sex" valid:"required"`
+  Sex string `json:"sex"`
   //是否删除
   IsDeleted bool `json:"isDeleted"`
   //更新时间

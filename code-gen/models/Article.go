@@ -11,9 +11,9 @@ type Article struct {
 	  //文章id
   Id string `json:"id" valid:"required"`
   //文章标题
-  Name string `json:"name" valid:"required"`
+  Name string `json:"name"`
   //文章类型，不同的类型对应不用的泪容格式
-  CategoryId string `json:"categoryId" valid:"required"`
+  CategoryId string `json:"categoryId"`
   //是否删除
   IsDeleted bool `json:"isDeleted"`
   //更新时间
