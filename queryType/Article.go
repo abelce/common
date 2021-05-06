@@ -2,13 +2,17 @@ package queryType
 
 import (
 	gen_md "abelce/common/code-gen/models"
-	
+
 	"github.com/graphql-go/graphql"
 )
 
 
-var GetArticleType = func(endpoint string) *graphql.Object{
-	return graphql.NewObject(graphql.ObjectConfig{
+var singleArticleType *graphql.Object // 使用单例模式
+func GetArticleType(endpoint string) *graphql.Object{
+	if singleArticleType != nil {
+		return singleArticleType
+	}
+	singleArticleType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Article",
 		Fields: graphql.Fields{
 			
@@ -47,6 +51,13 @@ var GetArticleType = func(endpoint string) *graphql.Object{
 					}
 					entity := p.Source.(gen_md.Article)
 					return entity.CategoryId, nil
+				},
+			},
+			
+			"category": &graphql.Field {
+				Type: GetCategoryType(endpoint),
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					return EntityResolver(p, endpoint + "/v1/categorys/")
 				},
 			},
 			
@@ -118,4 +129,5 @@ var GetArticleType = func(endpoint string) *graphql.Object{
 			
 		},
 	})
+	return singleArticleType
 }

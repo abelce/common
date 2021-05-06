@@ -2,13 +2,17 @@ package queryType
 
 import (
 	gen_md "abelce/common/code-gen/models"
-	
+
 	"github.com/graphql-go/graphql"
 )
 
 
-var GetUserType = func(endpoint string) *graphql.Object{
-	return graphql.NewObject(graphql.ObjectConfig{
+var singleUserType *graphql.Object // 使用单例模式
+func GetUserType(endpoint string) *graphql.Object{
+	if singleUserType != nil {
+		return singleUserType
+	}
+	singleUserType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "User",
 		Fields: graphql.Fields{
 			
@@ -92,4 +96,5 @@ var GetUserType = func(endpoint string) *graphql.Object{
 			
 		},
 	})
+	return singleUserType
 }

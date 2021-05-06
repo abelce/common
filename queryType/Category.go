@@ -2,13 +2,17 @@ package queryType
 
 import (
 	gen_md "abelce/common/code-gen/models"
-	
+
 	"github.com/graphql-go/graphql"
 )
 
 
-var GetCategoryType = func(endpoint string) *graphql.Object{
-	return graphql.NewObject(graphql.ObjectConfig{
+var singleCategoryType *graphql.Object // 使用单例模式
+func GetCategoryType(endpoint string) *graphql.Object{
+	if singleCategoryType != nil {
+		return singleCategoryType
+	}
+	singleCategoryType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Category",
 		Fields: graphql.Fields{
 			
@@ -92,4 +96,5 @@ var GetCategoryType = func(endpoint string) *graphql.Object{
 			
 		},
 	})
+	return singleCategoryType
 }

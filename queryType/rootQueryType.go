@@ -83,6 +83,14 @@ func GetRootQueryType(endpoint string) *graphql.Object {
 				},
 			},
 			
+			"Category": &graphql.Field{
+				Type: graphql.NewList(GetCategoryType(endpoint)),
+				Args: Args,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					return ListResolver(p, endpoint + "/v1/categorys")
+				},
+			},
+			
 			"Product": &graphql.Field{
 				Type: graphql.NewList(GetProductType(endpoint)),
 				Args: Args,
