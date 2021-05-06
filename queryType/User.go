@@ -2,79 +2,94 @@ package queryType
 
 import (
 	gen_md "abelce/common/code-gen/models"
+	
 	"github.com/graphql-go/graphql"
 )
 
 
-var UserType = graphql.NewObject(graphql.ObjectConfig{
-	Name: "User",
-	Fields: graphql.Fields{
-        
-		"id": &graphql.Field{
-			Type: graphql.String,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if p.Source == nil {
-					return nil, nil
-				}
-				entity := p.Source.(gen_md.User)
-                return entity.Id, nil
+var GetUserType = func(endpoint string) *graphql.Object{
+	return graphql.NewObject(graphql.ObjectConfig{
+		Name: "User",
+		Fields: graphql.Fields{
+			
+			"id": &graphql.Field {
+				Type: graphql.String,
+				Description: "用户ID",
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if p.Source == nil {
+						return nil, nil
+					}
+					entity := p.Source.(gen_md.User)
+					return entity.Id, nil
+				},
 			},
-		},
-        
-		"name": &graphql.Field{
-			Type: graphql.String,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if p.Source == nil {
-					return nil, nil
-				}
-				entity := p.Source.(gen_md.User)
-                return entity.Name, nil
+			
+			
+			"name": &graphql.Field {
+				Type: graphql.String,
+				Description: "姓名",
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if p.Source == nil {
+						return nil, nil
+					}
+					entity := p.Source.(gen_md.User)
+					return entity.Name, nil
+				},
 			},
-		},
-        
-		"sex": &graphql.Field{
-			Type: graphql.String,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if p.Source == nil {
-					return nil, nil
-				}
-				entity := p.Source.(gen_md.User)
-                return entity.Sex, nil
+			
+			
+			"sex": &graphql.Field {
+				Type: graphql.String,
+				Description: "性别",
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if p.Source == nil {
+						return nil, nil
+					}
+					entity := p.Source.(gen_md.User)
+					return entity.Sex, nil
+				},
 			},
-		},
-        
-		"isDeleted": &graphql.Field{
-			Type: graphql.Boolean,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if p.Source == nil {
-					return nil, nil
-				}
-				entity := p.Source.(gen_md.User)
-                return entity.IsDeleted, nil
+			
+			
+			"isDeleted": &graphql.Field {
+				Type: graphql.Boolean,
+				Description: "是否删除",
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if p.Source == nil {
+						return nil, nil
+					}
+					entity := p.Source.(gen_md.User)
+					return entity.IsDeleted, nil
+				},
 			},
-		},
-        
-		"updatedTime": &graphql.Field{
-			Type: graphql.Int,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if p.Source == nil {
-					return nil, nil
-				}
-				entity := p.Source.(gen_md.User)
-                return entity.UpdatedTime, nil
+			
+			
+			"updatedTime": &graphql.Field {
+				Type: graphql.Int,
+				Description: "更新时间",
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if p.Source == nil {
+						return nil, nil
+					}
+					entity := p.Source.(gen_md.User)
+					return entity.UpdatedTime, nil
+				},
 			},
-		},
-        
-		"createdTime": &graphql.Field{
-			Type: graphql.Int,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if p.Source == nil {
-					return nil, nil
-				}
-				entity := p.Source.(gen_md.User)
-                return entity.CreatedTime, nil
+			
+			
+			"createdTime": &graphql.Field {
+				Type: graphql.Int,
+				Description: "创建时间",
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if p.Source == nil {
+						return nil, nil
+					}
+					entity := p.Source.(gen_md.User)
+					return entity.CreatedTime, nil
+				},
 			},
+			
+			
 		},
-        
-	},
-})
+	})
+}

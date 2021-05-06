@@ -7,53 +7,33 @@ import (
 )
 
 
-var GetProductType = func(endpoint string) *graphql.Object{
+var GetCategoryType = func(endpoint string) *graphql.Object{
 	return graphql.NewObject(graphql.ObjectConfig{
-		Name: "Product",
+		Name: "Category",
 		Fields: graphql.Fields{
 			
 			"id": &graphql.Field {
 				Type: graphql.String,
-				Description: "产品ID",
+				Description: "id",
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
+					entity := p.Source.(gen_md.Category)
 					return entity.Id, nil
 				},
 			},
 			
 			
-			"name": &graphql.Field {
+			"title": &graphql.Field {
 				Type: graphql.String,
-				Description: "产品名称",
+				Description: "标题",
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
-					return entity.Name, nil
-				},
-			},
-			
-			
-			"categoryId": &graphql.Field {
-				Type: graphql.String,
-				Description: "产品类型",
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if p.Source == nil {
-						return nil, nil
-					}
-					entity := p.Source.(gen_md.Product)
-					return entity.CategoryId, nil
-				},
-			},
-			
-			"category": &graphql.Field {
-				Type: GetCategoryType(endpoint),
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return EntityResolver(p, endpoint + "/v1/products/")
+					entity := p.Source.(gen_md.Category)
+					return entity.Title, nil
 				},
 			},
 			
@@ -65,7 +45,7 @@ var GetProductType = func(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
+					entity := p.Source.(gen_md.Category)
 					return entity.IsDeleted, nil
 				},
 			},
@@ -78,7 +58,7 @@ var GetProductType = func(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
+					entity := p.Source.(gen_md.Category)
 					return entity.UpdatedTime, nil
 				},
 			},
@@ -91,7 +71,7 @@ var GetProductType = func(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
+					entity := p.Source.(gen_md.Category)
 					return entity.CreatedTime, nil
 				},
 			},
@@ -104,34 +84,8 @@ var GetProductType = func(endpoint string) *graphql.Object{
 					if p.Source == nil {
 						return nil, nil
 					}
-					entity := p.Source.(gen_md.Product)
+					entity := p.Source.(gen_md.Category)
 					return entity.OperateID, nil
-				},
-			},
-			
-			
-			"overview": &graphql.Field {
-				Type: graphql.String,
-				Description: "概览",
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if p.Source == nil {
-						return nil, nil
-					}
-					entity := p.Source.(gen_md.Product)
-					return entity.Overview, nil
-				},
-			},
-			
-			
-			"logo": &graphql.Field {
-				Type: graphql.String,
-				Description: "概览",
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if p.Source == nil {
-						return nil, nil
-					}
-					entity := p.Source.(gen_md.Product)
-					return entity.Logo, nil
 				},
 			},
 			
