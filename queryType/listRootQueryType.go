@@ -1,7 +1,7 @@
 package queryType
 
 import (
-	"github.com/abelce/common/request"
+	"abelce/common/request"
 
 	"encoding/json"
 
