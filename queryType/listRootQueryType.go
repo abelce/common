@@ -1,26 +1,27 @@
 package queryType
 
 import (
-	"abelce/common/request"
+	"github.com/abelce/common/request"
+
+	"encoding/json"
 
 	"github.com/graphql-go/graphql"
-	"encoding/json"
 )
 
 var Args = graphql.FieldConfigArgument{
-			"queryStr": &graphql.ArgumentConfig{
-				Type:         graphql.String,
-				DefaultValue: "",
-			},
-			// "page[offset]": &graphql.ArgumentConfig{
-			// 	Type:         graphql.Int,
-			// 	DefaultValue: 0,
-			// },
-			// "page[limit]": &graphql.ArgumentConfig{
-			// 	Type:         graphql.Int,
-			// 	DefaultValue: 20,
-			// },
-		}
+	"queryStr": &graphql.ArgumentConfig{
+		Type:         graphql.String,
+		DefaultValue: "",
+	},
+	// "page[offset]": &graphql.ArgumentConfig{
+	// 	Type:         graphql.Int,
+	// 	DefaultValue: 0,
+	// },
+	// "page[limit]": &graphql.ArgumentConfig{
+	// 	Type:         graphql.Int,
+	// 	DefaultValue: 20,
+	// },
+}
 
 func ListResolver(p graphql.ResolveParams, url string) (interface{}, error) {
 	// 请求转发到具体的服务，并获取数据
@@ -74,40 +75,38 @@ func GetListRootQueryType(endpoint string) *graphql.Object {
 	return graphql.NewObject(graphql.ObjectConfig{
 		Name: "RootQuery",
 		Fields: graphql.Fields{
-			
+
 			"Article": &graphql.Field{
 				Type: graphql.NewList(GetArticleType(endpoint)),
 				Args: Args,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return ListResolver(p, endpoint + "/v1/articles")
+					return ListResolver(p, endpoint+"/v1/articles")
 				},
 			},
-			
+
 			"Category": &graphql.Field{
 				Type: graphql.NewList(GetCategoryType(endpoint)),
 				Args: Args,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return ListResolver(p, endpoint + "/v1/categorys")
+					return ListResolver(p, endpoint+"/v1/categorys")
 				},
 			},
-			
+
 			"Product": &graphql.Field{
 				Type: graphql.NewList(GetProductType(endpoint)),
 				Args: Args,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return ListResolver(p, endpoint + "/v1/products")
+					return ListResolver(p, endpoint+"/v1/products")
 				},
 			},
-			
+
 			"User": &graphql.Field{
 				Type: graphql.NewList(GetUserType(endpoint)),
 				Args: Args,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return ListResolver(p, endpoint + "/v1/users")
+					return ListResolver(p, endpoint+"/v1/users")
 				},
 			},
-			
 		},
 	})
 }
-

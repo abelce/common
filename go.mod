@@ -1,4 +1,4 @@
-module abelce/common
+module github.com/abelce/common
 
 go 1.14
 
