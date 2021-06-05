@@ -47,8 +47,8 @@ func NewUser(
 		}
 
     entity.IsDeleted = false
-    entity.CreatedTime = time.Now().Unix()
-	entity.UpdatedTime = time.Now().Unix()
+    entity.CreateTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 	
     if err := entity.Valid(); err != nil {
 		return nil, err
@@ -59,7 +59,7 @@ func NewUser(
 
 func (entity *User) Delete() {
 	entity.IsDeleted = false
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 }
 
 func (entity *User) Update(
@@ -75,7 +75,7 @@ func (entity *User) Update(
   entity.UpdatedTime=updatedTime
   entity.CreatedTime=createdTime
 
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 
 	return entity.Valid()
 }

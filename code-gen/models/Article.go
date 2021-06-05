@@ -55,8 +55,8 @@ func NewArticle(
 		}
 
     entity.IsDeleted = false
-    entity.CreatedTime = time.Now().Unix()
-	entity.UpdatedTime = time.Now().Unix()
+    entity.CreateTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 	
     if err := entity.Valid(); err != nil {
 		return nil, err
@@ -67,7 +67,7 @@ func NewArticle(
 
 func (entity *Article) Delete() {
 	entity.IsDeleted = false
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 }
 
 func (entity *Article) Update(
@@ -87,7 +87,7 @@ func (entity *Article) Update(
   entity.OperateID=operateID
   entity.Content=content
 
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 
 	return entity.Valid()
 }

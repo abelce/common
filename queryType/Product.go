@@ -83,14 +83,14 @@ func GetProductType(endpoint string) *graphql.Object{
 			},
 			
 			
-			"updatedTime": &graphql.Field {
+			"updateTime": &graphql.Field {
 				Type: graphql.Int,
 				Description: "更新时间",
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					if p.Source == nil {
 						return nil, nil
 					}
-					if val, exist := p.Source.(map[string]interface{})["updatedTime"]; exist {
+					if val, exist := p.Source.(map[string]interface{})["updateTime"]; exist {
 						return val, nil
 					}
 					return nil, nil
@@ -98,14 +98,14 @@ func GetProductType(endpoint string) *graphql.Object{
 			},
 			
 			
-			"createdTime": &graphql.Field {
+			"createTime": &graphql.Field {
 				Type: graphql.Int,
 				Description: "创建时间",
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					if p.Source == nil {
 						return nil, nil
 					}
-					if val, exist := p.Source.(map[string]interface{})["createdTime"]; exist {
+					if val, exist := p.Source.(map[string]interface{})["createTime"]; exist {
 						return val, nil
 					}
 					return nil, nil

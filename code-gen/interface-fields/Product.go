@@ -11,9 +11,9 @@ const (
   //是否删除
   F_Product_isDeleted = "isDeleted"
   //更新时间
-  F_Product_updatedTime = "updatedTime"
+  F_Product_updateTime = "updateTime"
   //创建时间
-  F_Product_createdTime = "createdTime"
+  F_Product_createTime = "createTime"
   //用户ID
   F_Product_operateID = "operateID"
   //概览

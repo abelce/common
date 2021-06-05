@@ -10,16 +10,18 @@ import (
 type Category struct {
 	  //id
   Id string `json:"id" valid:"required"`
-  //标题
+  //名称
   Title string `json:"title" valid:"required"`
   //是否删除
   IsDeleted bool `json:"isDeleted"`
   //更新时间
-  UpdatedTime int64 `json:"updatedTime"`
+  UpdateTime int64 `json:"updateTime"`
   //创建时间
-  CreatedTime int64 `json:"createdTime"`
+  CreateTime int64 `json:"createTime"`
   //用户ID
   OperateID string `json:"operateID"`
+  //对应的业务对象
+  ObjectTypeId string `json:"objectTypeId"`
 }
 
 func (entity *Category) Valid() error {
@@ -34,21 +36,23 @@ func (entity *Category) Valid() error {
 func NewCategory(
 	  id string,
   title string,
-  updatedTime int64,
-  createdTime int64,
+  updateTime int64,
+  createTime int64,
   operateID string,
+  objectTypeId string,
 	) (*Category, error) {
 	entity := &Category {
 		   Id: id,
   Title: title,
-  UpdatedTime: updatedTime,
-  CreatedTime: createdTime,
-  OperateID: operateID, 
+  UpdateTime: updateTime,
+  CreateTime: createTime,
+  OperateID: operateID,
+  ObjectTypeId: objectTypeId, 
 		}
 
     entity.IsDeleted = false
-    entity.CreatedTime = time.Now().Unix()
-	entity.UpdatedTime = time.Now().Unix()
+    entity.CreateTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 	
     if err := entity.Valid(); err != nil {
 		return nil, err
@@ -59,23 +63,25 @@ func NewCategory(
 
 func (entity *Category) Delete() {
 	entity.IsDeleted = false
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 }
 
 func (entity *Category) Update(
 	  title string,
   isDeleted bool,
-  updatedTime int64,
-  createdTime int64,
+  updateTime int64,
+  createTime int64,
   operateID string,
+  objectTypeId string,
 ) error {
 	  entity.Title=title
   entity.IsDeleted=isDeleted
-  entity.UpdatedTime=updatedTime
-  entity.CreatedTime=createdTime
+  entity.UpdateTime=updateTime
+  entity.CreateTime=createTime
   entity.OperateID=operateID
+  entity.ObjectTypeId=objectTypeId
 
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 
 	return entity.Valid()
 }

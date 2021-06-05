@@ -17,9 +17,9 @@ type Product struct {
   //是否删除
   IsDeleted bool `json:"isDeleted"`
   //更新时间
-  UpdatedTime int64 `json:"updatedTime"`
+  UpdateTime int64 `json:"updateTime"`
   //创建时间
-  CreatedTime int64 `json:"createdTime"`
+  CreateTime int64 `json:"createTime"`
   //用户ID
   OperateID string `json:"operateID"`
   //概览
@@ -41,8 +41,8 @@ func NewProduct(
 	  id string,
   name string,
   categoryId string,
-  updatedTime int64,
-  createdTime int64,
+  updateTime int64,
+  createTime int64,
   operateID string,
   overview string,
   logo string,
@@ -51,16 +51,16 @@ func NewProduct(
 		   Id: id,
   Name: name,
   CategoryId: categoryId,
-  UpdatedTime: updatedTime,
-  CreatedTime: createdTime,
+  UpdateTime: updateTime,
+  CreateTime: createTime,
   OperateID: operateID,
   Overview: overview,
   Logo: logo, 
 		}
 
     entity.IsDeleted = false
-    entity.CreatedTime = time.Now().Unix()
-	entity.UpdatedTime = time.Now().Unix()
+    entity.CreateTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 	
     if err := entity.Valid(); err != nil {
 		return nil, err
@@ -71,15 +71,15 @@ func NewProduct(
 
 func (entity *Product) Delete() {
 	entity.IsDeleted = false
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 }
 
 func (entity *Product) Update(
 	  name string,
   categoryId string,
   isDeleted bool,
-  updatedTime int64,
-  createdTime int64,
+  updateTime int64,
+  createTime int64,
   operateID string,
   overview string,
   logo string,
@@ -87,13 +87,13 @@ func (entity *Product) Update(
 	  entity.Name=name
   entity.CategoryId=categoryId
   entity.IsDeleted=isDeleted
-  entity.UpdatedTime=updatedTime
-  entity.CreatedTime=createdTime
+  entity.UpdateTime=updateTime
+  entity.CreateTime=createTime
   entity.OperateID=operateID
   entity.Overview=overview
   entity.Logo=logo
 
-	entity.UpdatedTime = time.Now().Unix()
+	entity.UpdateTime = time.Now().Unix()
 
 	return entity.Valid()
 }
